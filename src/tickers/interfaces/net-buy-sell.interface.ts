@@ -1,0 +1,21 @@
+export interface NetBuySell {
+  date: string; // 日期
+  exchange: string; // 交易所
+  symbol: string; // 證券代碼
+  name: string; // 證券名稱
+  fiBuy: number; // 外資買進股數
+  fiSell: number; // 外資賣出股數
+  fiNet: number; // 外資買賣超股數
+  fdBuy: number; // 外資自營商買進股數
+  fdSell: number; // 外資自營商賣出股數
+  fdNet: number; // 外資自營商買賣超股數
+  itBuy: number; // 投信買進股數
+  itSell: number; // 投信賣出股數
+  itNet: number; // 投信買賣超股數
+  dpBuy: number; // 自營商(自行買賣)買進股數
+  dpSell: number; // 自營商(自行買賣)賣出股數
+  dpNet: number; // 自營商(自行買賣)買賣超股數
+  dhBuy: number; // 自營商(避險)買進股數
+  dhSell: number; // 自營商(避險)賣出股數
+  dhNet: number; // 自營商(避險)買賣超股數
+}
