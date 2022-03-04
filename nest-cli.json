@@ -25,6 +25,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/service-ticker/tsconfig.app.json"
       }
+    },
+    "cli": {
+      "type": "application",
+      "root": "apps/cli",
+      "entryFile": "main",
+      "sourceRoot": "apps/cli/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/cli/tsconfig.app.json"
+      }
     }
   }
 }
