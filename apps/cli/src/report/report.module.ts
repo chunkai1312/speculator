@@ -1,9 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ReportModule } from '../report/report.module';
-import { InitCommand } from './init.command';
-import { UpdateCommand } from './update.command';
-import { ExportCommand } from './export.command';
+import { ReportService } from './report.service';
 
 @Module({
   imports: [
@@ -15,8 +12,8 @@ import { ExportCommand } from './export.command';
         port: 3001,
       },
     }]),
-    ReportModule,
   ],
-  providers: [InitCommand, UpdateCommand, ExportCommand],
+  providers: [ReportService],
+  exports: [ReportService],
 })
-export class CommandsModule {}
+export class ReportModule {}

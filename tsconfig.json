@@ -17,6 +17,19 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@speculator/service-ticker": [
+        "apps/service-ticker/src"
+      ],
+      "@speculator/service-ticker/*": [
+        "apps/service-ticker/src/*"
+      ],
+      "@speculator/cli": [
+        "apps/cli/src"
+      ],
+      "@speculator/cli/*": [
+        "apps/cli/src/*"
+      ],
+    }
   }
 }

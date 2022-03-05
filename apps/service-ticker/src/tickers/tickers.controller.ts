@@ -30,73 +30,74 @@ export class TickersController {
   constructor(
     private readonly commandBus: CommandBus,
     private readonly queryBus: QueryBus,
-  ) {}
+  ) {
+  }
 
-  @MessagePattern({ cmd: constants.UPDATE_EQUITY_CHIPS })
-  updateMarketChips(updateMarketChipsDto: UpdateMarketChipsDto) {
+  @MessagePattern({ cmd: constants.UPDATE_MARKET_CHIPS })
+  async updateMarketChips(updateMarketChipsDto: UpdateMarketChipsDto) {
     return this.commandBus
       .execute(new UpdateMarketChipsCommand(updateMarketChipsDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
-  @MessagePattern({ cmd: constants.UPDATE_EQUITY_QUOTES })
-  updateEquityChips(updateEquityChipsDto: UpdateEquityChipsDto) {
+  @MessagePattern({ cmd: constants.UPDATE_EQUITY_CHIPS })
+  async updateEquityChips(updateEquityChipsDto: UpdateEquityChipsDto) {
     return this.commandBus
       .execute(new UpdateEquityChipsCommand(updateEquityChipsDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.UPDATE_EQUITY_QUOTES })
-  updateEquityQuotes(updateEquityQuotesDto: UpdateEquityQuotesDto) {
+  async updateEquityQuotes(updateEquityQuotesDto: UpdateEquityQuotesDto) {
     return this.commandBus
       .execute(new UpdateEquityQuotesCommand(updateEquityQuotesDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.UPDATE_INDEX_QUOTES })
-  updateIndexQuotes(updateIndexQuotesDto: UpdateIndexQuotesDto) {
+  async updateIndexQuotes(updateIndexQuotesDto: UpdateIndexQuotesDto) {
     return this.commandBus
       .execute(new UpdateIndexQuotesCommand(updateIndexQuotesDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.UPDATE_MARKET_TRADES })
-  updateMarketTrades(updateMarketTradesDto: UpdateMarketTradesDto) {
+  async updateMarketTrades(updateMarketTradesDto: UpdateMarketTradesDto) {
     return this.commandBus
       .execute(new UpdateMarketTradesCommand(updateMarketTradesDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.UPDATE_SECTOR_TRADES })
-  updateSectorTrades(updateSectorTradesDto: UpdateSectorTradesDto) {
+  async updateSectorTrades(updateSectorTradesDto: UpdateSectorTradesDto) {
     return this.commandBus
       .execute(new UpdateSectorTradesCommand(updateSectorTradesDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.GET_TICKERS_BY_DATE })
-  getTickersByDate(getTickersFilterDto: GetTickersFilterDto) {
+  async getTickersByDate(getTickersFilterDto: GetTickersFilterDto) {
     return this.queryBus
       .execute(new GetTickersByDateQuery(getTickersFilterDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.GET_MARKET_INFO })
-  getMarketInfo(getMarketInfoFilter: GetMarketInfoFilter) {
+  async getMarketInfo(getMarketInfoFilter: GetMarketInfoFilter) {
     return this.queryBus
       .execute(new GetMarketInfoQuery(getMarketInfoFilter))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.GET_SECTOR_INFO })
-  getSectorInfo(getSectorInfoFilter: GetSectorInfoFilter) {
+  async getSectorInfo(getSectorInfoFilter: GetSectorInfoFilter) {
     return this.queryBus
       .execute(new GetSectorInfoQuery(getSectorInfoFilter))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
   @MessagePattern({ cmd: constants.GET_LAST_TRADE_DATES_BY_DATE })
-  getLastTradeDatesByDate(filterDto: GetLastTradeDatesByDateFilterDto) {
+  async getLastTradeDatesByDate(filterDto: GetLastTradeDatesByDateFilterDto) {
     return this.queryBus
       .execute(new GetLastTradeDatesByDateQuery(filterDto))
       .catch(err => this.logger.error(err.message, err.stack));

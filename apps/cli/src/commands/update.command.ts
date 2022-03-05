@@ -6,41 +6,32 @@ import { ClientProxy } from '@nestjs/microservices';
 import { Command, CommandRunner, Option } from 'nest-commander';
 import { Exchange, MarketChip } from 'apps/service-ticker/src/tickers/enums';
 
-interface InitCommandOptions {
-  from?: string;
-  to?: string;
+interface UpdateCommandOptions {
+  date?: string;
 }
 
-@Command({ name: 'init', description: 'initialize the application' })
-export class InitCommand implements CommandRunner {
+@Command({ name: 'update', description: 'update data' })
+export class UpdateCommand implements CommandRunner {
   private readonly spinner = ora();
 
   constructor(@Inject('service-ticker') private client: ClientProxy) {}
 
-  async run(passedParam: string[], options?: InitCommandOptions): Promise<void> {
-    this.spinner.start('初始化應用程式...');
-
-    const start = DateTime.fromISO(options.from);
-    const end = DateTime.fromISO(options.to);
-
+  async run(passedParam: string[], options?: UpdateCommandOptions): Promise<void> {
+    this.spinner.start('資料更新中...');
     try {
-      for (let dt = start; dt <= end; dt = dt.plus({ day: 1 })) {
-        const date = dt.toISODate();
-        await this.wait(5000);
-        await this.updateMarketChips(date);
-        await this.wait(5000);
-        await this.updateEquityChips(date);
-        await this.wait(5000);
-        await this.updateEquityQuotes(date);
-        await this.wait(5000);
-        await this.updateIndexQuotes(date);
-        await this.wait(5000);
-        await this.updateMarketTrades(date);
-        await this.wait(5000);
-        await this.updateSectorTrades(date);
-        this.spinner.succeed(`${date} 更新完成`);
-      }
-      this.spinner.succeed('應用程式初始化完成');
+      await this.wait(5000);
+      await this.updateMarketChips(options.date);
+      await this.wait(5000);
+      await this.updateEquityChips(options.date);
+      await this.wait(5000);
+      await this.updateEquityQuotes(options.date);
+      await this.wait(5000);
+      await this.updateIndexQuotes(options.date);
+      await this.wait(5000);
+      await this.updateMarketTrades(options.date);
+      await this.wait(5000);
+      await this.updateSectorTrades(options.date);
+      this.spinner.succeed(`${options.date} 更新完成`);
     } catch (err) {
       this.spinner.fail('執行階段錯誤');
       console.log(err);
@@ -48,20 +39,11 @@ export class InitCommand implements CommandRunner {
   }
 
   @Option({
-    flags: '-f, --from [date]',
-    description: 'start date',
+    flags: '-d, --date [date]',
+    description: 'date of trading date',
     defaultValue: DateTime.local().toISODate(),
   })
-  parseFrom(value: string): string {
-    return DateTime.fromISO(value).isValid && value || DateTime.local().toISODate();
-  }
-
-  @Option({
-    flags: '-t, --to [date]',
-    description: 'end date',
-    defaultValue: DateTime.local().toISODate(),
-  })
-  parseTo(value: string): string {
+  parseDate(value: string): string {
     return DateTime.fromISO(value).isValid && value || DateTime.local().toISODate();
   }
 
