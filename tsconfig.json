@@ -29,7 +29,7 @@
       ],
       "@speculator/cli/*": [
         "apps/cli/src/*"
-      ],
+      ]
     }
   }
 }

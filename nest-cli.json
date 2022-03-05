@@ -2,21 +2,12 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "apps/speculator/src",
   "monorepo": true,
-  "root": "apps/speculator",
+  "root": "apps/cli",
   "compilerOptions": {
     "webpack": true,
     "tsConfigPath": "apps/speculator/tsconfig.app.json"
   },
   "projects": {
-    "speculator": {
-      "type": "application",
-      "root": "apps/speculator",
-      "entryFile": "main",
-      "sourceRoot": "apps/speculator/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/speculator/tsconfig.app.json"
-      }
-    },
     "service-ticker": {
       "type": "application",
       "root": "apps/service-ticker",

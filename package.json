@@ -19,8 +19,6 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./apps/speculator/test/jest-e2e.json",
-    "console:dev": "ts-node -r tsconfig-paths/register src/console.ts",
-    "console": "node dist/console.js",
     "cli:dev": "ts-node -r tsconfig-paths/register apps/cli/src/main.ts",
     "cli": "node dist/apps/cli/main.js"
   },
