@@ -10,10 +10,11 @@ import { getMoneyFlowFromTickersByDate, getMostActivesFromTickers, getMoversFrom
 import { MarketInfoSheetColumn, MoneyFlowSheetColumn, MostActivesSheetColumn, MoversSheetColumn, NetBuySellSheetColumn, ForegroundColor } from './enums';
 import { getFontColorByNetChange, getSymbolStatus, getForegroundColorBySymbolStatus } from './utils';
 import { ExportOptions } from './interfaces';
+import { API_SERVICE } from '../constants';
 
 @Injectable()
 export class ReportService {
-  constructor(@Inject('api') private client: ClientProxy) {}
+  constructor(@Inject(API_SERVICE) private client: ClientProxy) {}
 
   async export(options: ExportOptions) {
     const { filename } = options;

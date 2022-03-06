@@ -9,17 +9,17 @@ interface ExportCommandOptions {
   days: number;
 }
 
-@Command({ name: 'export', description: 'export report' })
+@Command({ name: 'export', description: '匯出盤後籌碼報告' })
 export class ExportCommand implements CommandRunner {
   private readonly spinner = ora();
 
   constructor(private readonly reportService: ReportService) {}
 
   async run(passedParam: string[], options?: ExportCommandOptions): Promise<void> {
-    this.spinner.start('正在匯出盤後資訊...');
     try {
+      this.spinner.start('正在匯出盤後籌碼報告...');
       await this.exportReport(options);
-      this.spinner.succeed(`${options.date} 盤後籌碼已匯出`);
+      this.spinner.succeed(`${options.date} 盤後籌碼報告已匯出`);
     } catch (err) {
       this.spinner.fail('執行階段錯誤');
       console.log(err);
@@ -28,7 +28,7 @@ export class ExportCommand implements CommandRunner {
 
   @Option({
     flags: '-d, --date [date]',
-    description: 'date of trading date',
+    description: '指定交易日',
     defaultValue: DateTime.local().toISODate(),
   })
   parseDate(value: string): string {

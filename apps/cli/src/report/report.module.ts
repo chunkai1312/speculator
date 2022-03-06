@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ReportService } from './report.service';
+import { API_SERVICE } from '../constants';
 
 @Module({
   imports: [
     ClientsModule.register([{
-      name: 'api',
+      name: API_SERVICE,
       transport: Transport.TCP,
       options: {
         host: process.env.API_HOST,

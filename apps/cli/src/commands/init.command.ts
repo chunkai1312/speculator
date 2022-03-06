@@ -4,26 +4,27 @@ import { firstValueFrom } from 'rxjs';
 import { Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { Exchange, MarketChip } from 'apps/api/src/tickers/enums';
+import { Exchange, MarketChip } from '@speculator/common';
+import { API_SERVICE } from '../constants';
 
 interface InitCommandOptions {
   from?: string;
   to?: string;
 }
 
-@Command({ name: 'init', description: 'initialize the application' })
+@Command({ name: 'init', description: '初始化應用程式' })
 export class InitCommand implements CommandRunner {
   private readonly spinner = ora();
 
-  constructor(@Inject('api') private client: ClientProxy) {}
+  constructor(@Inject(API_SERVICE) private readonly client: ClientProxy) {}
 
   async run(passedParam: string[], options?: InitCommandOptions): Promise<void> {
-    this.spinner.start('初始化應用程式...');
-
     const start = DateTime.fromISO(options.from);
     const end = DateTime.fromISO(options.to);
 
     try {
+      this.spinner.start('正在初始化應用程式...');
+
       for (let dt = start; dt <= end; dt = dt.plus({ day: 1 })) {
         const date = dt.toISODate();
         await this.wait(5000);
@@ -40,6 +41,7 @@ export class InitCommand implements CommandRunner {
         await this.updateSectorTrades(date);
         this.spinner.succeed(`${date} 更新完成`);
       }
+
       this.spinner.succeed('應用程式初始化完成');
     } catch (err) {
       this.spinner.fail('執行階段錯誤');
@@ -49,7 +51,7 @@ export class InitCommand implements CommandRunner {
 
   @Option({
     flags: '-f, --from [date]',
-    description: 'start date',
+    description: '開始日期',
     defaultValue: DateTime.local().toISODate(),
   })
   parseFrom(value: string): string {
@@ -58,7 +60,7 @@ export class InitCommand implements CommandRunner {
 
   @Option({
     flags: '-t, --to [date]',
-    description: 'end date',
+    description: '結束日期',
     defaultValue: DateTime.local().toISODate(),
   })
   parseTo(value: string): string {

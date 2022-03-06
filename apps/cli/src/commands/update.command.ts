@@ -4,21 +4,22 @@ import { firstValueFrom } from 'rxjs';
 import { Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { Exchange, MarketChip } from 'apps/api/src/tickers/enums';
+import { Exchange, MarketChip } from '@speculator/common';
+import { API_SERVICE } from '../constants';
 
 interface UpdateCommandOptions {
   date?: string;
 }
 
-@Command({ name: 'update', description: 'update data' })
+@Command({ name: 'update', description: '更新交易日資料' })
 export class UpdateCommand implements CommandRunner {
   private readonly spinner = ora();
 
-  constructor(@Inject('api') private client: ClientProxy) {}
+  constructor(@Inject(API_SERVICE) private readonly client: ClientProxy) {}
 
   async run(passedParam: string[], options?: UpdateCommandOptions): Promise<void> {
-    this.spinner.start('資料更新中...');
     try {
+      this.spinner.start('正在更新交易日資料...');
       await this.wait(5000);
       await this.updateMarketChips(options.date);
       await this.wait(5000);
@@ -40,7 +41,7 @@ export class UpdateCommand implements CommandRunner {
 
   @Option({
     flags: '-d, --date [date]',
-    description: 'date of trading date',
+    description: '交易日日期',
     defaultValue: DateTime.local().toISODate(),
   })
   parseDate(value: string): string {
