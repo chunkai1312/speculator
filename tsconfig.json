@@ -18,17 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@speculator/api": [
-        "apps/api/src"
+      "@speculator/common": [
+        "libs/common/src"
       ],
-      "@speculator/api/*": [
-        "apps/api/src/*"
-      ],
-      "@speculator/cli": [
-        "apps/cli/src"
-      ],
-      "@speculator/cli/*": [
-        "apps/cli/src/*"
+      "@speculator/common/*": [
+        "libs/common/src/*"
       ]
     }
   }

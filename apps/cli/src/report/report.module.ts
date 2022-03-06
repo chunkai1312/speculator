@@ -8,8 +8,8 @@ import { ReportService } from './report.service';
       name: 'api',
       transport: Transport.TCP,
       options: {
-        host: 'localhost',
-        port: 3001,
+        host: process.env.API_HOST,
+        port: Number(process.env.API_SERVICE_PORT),
       },
     }]),
   ],
