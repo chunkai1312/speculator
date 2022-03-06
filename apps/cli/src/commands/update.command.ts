@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { Exchange, MarketChip } from 'apps/service-ticker/src/tickers/enums';
+import { Exchange, MarketChip } from 'apps/api/src/tickers/enums';
 
 interface UpdateCommandOptions {
   date?: string;
@@ -14,7 +14,7 @@ interface UpdateCommandOptions {
 export class UpdateCommand implements CommandRunner {
   private readonly spinner = ora();
 
-  constructor(@Inject('service-ticker') private client: ClientProxy) {}
+  constructor(@Inject('api') private client: ClientProxy) {}
 
   async run(passedParam: string[], options?: UpdateCommandOptions): Promise<void> {
     this.spinner.start('資料更新中...');

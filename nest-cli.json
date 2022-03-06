@@ -8,13 +8,13 @@
     "tsConfigPath": "apps/speculator/tsconfig.app.json"
   },
   "projects": {
-    "service-ticker": {
+    "api": {
       "type": "application",
-      "root": "apps/service-ticker",
+      "root": "apps/api",
       "entryFile": "main",
-      "sourceRoot": "apps/service-ticker/src",
+      "sourceRoot": "apps/api/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/service-ticker/tsconfig.app.json"
+        "tsConfigPath": "apps/api/tsconfig.app.json"
       }
     },
     "cli": {

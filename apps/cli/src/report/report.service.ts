@@ -4,16 +4,16 @@ import * as ExcelJS from 'exceljs';
 import { firstValueFrom } from 'rxjs';
 import { Injectable, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { Ticker } from 'apps/service-ticker/src/tickers/interfaces';
-import { Exchange, TickerType, MostActives, Movers, NetBuySellList, Index } from 'apps/service-ticker/src/tickers/enums';
-import { getMoneyFlowFromTickersByDate, getMostActivesFromTickers, getMoversFromTickers, getNetBuySellListFromTickers } from 'apps/service-ticker/src/tickers/utils';
+import { Ticker } from 'apps/api/src/tickers/interfaces';
+import { Exchange, TickerType, MostActives, Movers, NetBuySellList, Index } from 'apps/api/src/tickers/enums';
+import { getMoneyFlowFromTickersByDate, getMostActivesFromTickers, getMoversFromTickers, getNetBuySellListFromTickers } from 'apps/api/src/tickers/utils';
 import { MarketInfoSheetColumn, MoneyFlowSheetColumn, MostActivesSheetColumn, MoversSheetColumn, NetBuySellSheetColumn, ForegroundColor } from './enums';
 import { getFontColorByNetChange, getSymbolStatus, getForegroundColorBySymbolStatus } from './utils';
 import { ExportOptions } from './interfaces';
 
 @Injectable()
 export class ReportService {
-  constructor(@Inject('service-ticker') private client: ClientProxy) {}
+  constructor(@Inject('api') private client: ClientProxy) {}
 
   async export(options: ExportOptions) {
     const { filename } = options;

@@ -8,7 +8,7 @@ import { ExportCommand } from './export.command';
 @Module({
   imports: [
     ClientsModule.register([{
-      name: 'service-ticker',
+      name: 'api',
       transport: Transport.TCP,
       options: {
         host: 'localhost',

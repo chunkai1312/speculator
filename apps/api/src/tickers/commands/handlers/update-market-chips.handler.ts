@@ -11,7 +11,7 @@ import { TaifexCallsAndPutsContract, TaifexFuturesContract, TaifexFuturesDailyMa
 import { UpdateMarketChipsCommand } from '../impl/update-market-chips.command';
 import { MarketChipsUpdatedEvent } from '../../events/impl/market-chips-updated.event';
 import { TickerRepository } from '../../repositories/ticker.repository';
-import { Ticker } from '../../../tickers/interfaces';
+import { Ticker } from '../../interfaces';
 
 @CommandHandler(UpdateMarketChipsCommand)
 export class UpdateMarketChipsHandler implements ICommandHandler<UpdateMarketChipsCommand> {

@@ -18,11 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@speculator/service-ticker": [
-        "apps/service-ticker/src"
+      "@speculator/api": [
+        "apps/api/src"
       ],
-      "@speculator/service-ticker/*": [
-        "apps/service-ticker/src/*"
+      "@speculator/api/*": [
+        "apps/api/src/*"
       ],
       "@speculator/cli": [
         "apps/cli/src"

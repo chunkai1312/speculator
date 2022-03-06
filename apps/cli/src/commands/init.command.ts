@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { Exchange, MarketChip } from 'apps/service-ticker/src/tickers/enums';
+import { Exchange, MarketChip } from 'apps/api/src/tickers/enums';
 
 interface InitCommandOptions {
   from?: string;
@@ -15,7 +15,7 @@ interface InitCommandOptions {
 export class InitCommand implements CommandRunner {
   private readonly spinner = ora();
 
-  constructor(@Inject('service-ticker') private client: ClientProxy) {}
+  constructor(@Inject('api') private client: ClientProxy) {}
 
   async run(passedParam: string[], options?: InitCommandOptions): Promise<void> {
     this.spinner.start('初始化應用程式...');

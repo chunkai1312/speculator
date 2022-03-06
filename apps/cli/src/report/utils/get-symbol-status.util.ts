@@ -1,6 +1,6 @@
-import { Ticker } from 'apps/service-ticker/src/tickers/interfaces';
-import { NetBuySellList } from 'apps/service-ticker/src/tickers/enums/net-buy-sell-list.enum';
-import { getNetBuySellListFromTickers } from 'apps/service-ticker/src/tickers/utils';
+import { Ticker } from 'apps/api/src/tickers/interfaces';
+import { NetBuySellList } from 'apps/api/src/tickers/enums/net-buy-sell-list.enum';
+import { getNetBuySellListFromTickers } from 'apps/api/src/tickers/utils';
 import { SymbolStatus } from '../interfaces/symbol-status.interface';
 
 export function getSymbolStatus(symbol: string, data: Record<string, Ticker[]>): SymbolStatus {
