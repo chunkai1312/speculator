@@ -18,6 +18,7 @@
     "@nestjs/mongoose": "^9.0.2",
     "@nestjs/platform-express": "^8.0.0",
     "csvtojson": "^2.0.10",
+    "exceljs": "^4.3.0",
     "form-data": "^4.0.0",
     "lodash": "^4.17.21",
     "luxon": "^2.3.1",
