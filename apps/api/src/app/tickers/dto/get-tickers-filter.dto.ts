@@ -1,4 +1,4 @@
-import { Exchange, TickerType } from '../enums';
+import { TickerType, Exchange } from '@speculator/common';
 
 export class GetTickersFilterDto {
   readonly date?: string;

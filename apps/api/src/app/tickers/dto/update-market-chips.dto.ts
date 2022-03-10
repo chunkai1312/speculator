@@ -1,4 +1,4 @@
-import { MarketChip } from '../enums';
+import { Exchange, MarketChip } from '@speculator/common';
 
 export class UpdateMarketChipsDto {
   readonly date: string;

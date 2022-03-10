@@ -1,13 +1,11 @@
+import { DateTime } from 'luxon';
+import { groupBy } from 'lodash';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, FilterQuery, QueryOptions, LeanDocument } from 'mongoose';
-import { DateTime } from 'luxon';
-import { groupBy } from 'lodash';
+import { TickerType, Exchange, Index } from '@speculator/common';
 import { Ticker, TickerDocument } from '../schemas/ticker.schema';
 import { UpdateTickerDto } from '../dto/update-ticker.dto';
-import { Exchange } from '../enums/exchange.enum';
-import { TickerType } from '../enums/ticker-type.enum';
-import { Index } from '../enums/index.enum';
 import { GetMarketInfoFilter } from '../dto/get-market-info-filter.dto';
 import { GetSectorInfoFilter } from '../dto/get-sector-info-filter.dto';
 import { GetTickersFilterDto } from '../dto/get-tickers-filter.dto';

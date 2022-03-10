@@ -1,4 +1,4 @@
-import { Exchange } from '../enums';
+import { Exchange } from '@speculator/common';
 
 export class UpdateMarketTradesDto {
   readonly date: string;

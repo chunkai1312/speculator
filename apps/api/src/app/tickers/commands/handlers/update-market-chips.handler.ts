@@ -5,7 +5,7 @@ import { DateTime } from 'luxon';
 import { firstValueFrom } from 'rxjs';
 import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs';
 import { HttpService } from '@nestjs/axios';
-import { Exchange, Index, Market, MarketChip, TickerType } from '../../enums';
+import { TickerType, Exchange, Index, Market, MarketChip } from '@speculator/common';
 import { TwseTradingValueResponse, TwseMarginTransactionsResponse } from '../../interfaces/twse';
 import { TaifexCallsAndPutsContract, TaifexFuturesContract, TaifexFuturesDailyMarket, TaifexFuturesLargeTrader, TaifexPcRatio } from '../../interfaces/taifex';
 import { UpdateMarketChipsCommand } from '../impl/update-market-chips.command';

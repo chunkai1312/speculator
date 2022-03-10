@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 import { firstValueFrom } from 'rxjs';
 import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs';
 import { HttpService } from '@nestjs/axios';
-import { Exchange, Market, TickerType } from '../../enums';
+import { TickerType, Exchange, Market } from '@speculator/common';
 import { Ticker, TwseDailyQuotesResponse, TpexDailyQuotesResponse } from '../../interfaces';
 import { UpdateEquityQuotesCommand } from '../impl/update-equity-quotes.command';
 import { EquityQuotesUpdatedEvent } from '../../events/impl/equity-quotes-updated.event';

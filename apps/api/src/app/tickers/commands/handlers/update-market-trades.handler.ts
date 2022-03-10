@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import { firstValueFrom } from 'rxjs';
 import { CommandHandler, ICommandHandler, EventBus } from '@nestjs/cqrs';
 import { HttpService } from '@nestjs/axios';
-import { Exchange, Market, TickerType } from '../../enums';
+import { TickerType, Exchange, Market } from '@speculator/common';
 import { Ticker, TwseTaiexResponse, TpexIndexResponse } from '../../interfaces';
 import { UpdateMarketTradesCommand } from '../impl/update-market-trades.command';
 import { MarketTradesUpdatedEvent } from '../../events/impl/market-trades-updated.event';

@@ -1,4 +1,4 @@
-import { TickerType, Exchange, Market } from '../enums';
+import { TickerType, Exchange, Market } from '@speculator/common';
 
 export interface Ticker {
   date: string;
