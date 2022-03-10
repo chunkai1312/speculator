@@ -1,7 +1,7 @@
 import { Ticker } from '@speculator/common';
 import { NetBuySellList } from '@speculator/common';
-import { getNetBuySellListFromTickers } from '@speculator/common';
-import { SymbolStatus } from '../interfaces/symbol-status.interface';
+import { getNetBuySellListFromTickers } from '../utils';
+import { SymbolStatus } from '../interfaces';
 
 export function getSymbolStatus(symbol: string, data: Record<string, Ticker[]>): SymbolStatus {
   const [ lastDate, prevDate, ...dates ] = Object.keys(data);

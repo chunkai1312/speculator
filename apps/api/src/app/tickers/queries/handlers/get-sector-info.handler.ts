@@ -8,7 +8,6 @@ export class GetSectorInfoHandler implements IQueryHandler<GetSectorInfoQuery> {
 
   async execute(query: GetSectorInfoQuery) {
     const { getSectorInfoFilter } = query;
-
     return this.tickerRepository.getSectorInfo(getSectorInfoFilter);
   }
 }

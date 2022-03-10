@@ -1,4 +1,4 @@
-import { Exchange } from '@speculator/common';
+import { Exchange } from '../enums';
 
 export function getSectorNameFromSymbol(symbol: string, exchange: Exchange) {
   if (exchange === Exchange.TWSE) {

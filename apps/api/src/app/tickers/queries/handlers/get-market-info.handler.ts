@@ -8,7 +8,6 @@ export class GetMarketInfoHandler implements IQueryHandler<GetMarketInfoQuery> {
 
   async execute(query: GetMarketInfoQuery) {
     const { getMarketInfoFilter } = query;
-
     return this.tickerRepository.getMarketInfo(getMarketInfoFilter);
   }
 }
