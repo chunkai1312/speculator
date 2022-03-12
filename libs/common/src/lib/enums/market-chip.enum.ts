@@ -5,4 +5,6 @@ export enum MarketChip {
   StockMarketIndexOptionsInstiInvestorsNetOi, // 選擇權三大法人淨部位
   StockMarketIndexFuturesLargeTraderNetOi, // 期貨大額交易人淨部位
   StockMarketIndexFuturesRetailInvestorsNetOi, // 期貨散戶淨部位
+  StockMarketIndexOptionsPutCallRatio, // Put/Call Ratio
+  UsdTwdRate, // Put/Call Ratio
 }

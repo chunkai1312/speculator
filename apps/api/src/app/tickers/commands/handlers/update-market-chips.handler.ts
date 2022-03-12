@@ -33,6 +33,8 @@ export class UpdateMarketChipsHandler implements ICommandHandler<UpdateMarketChi
           [MarketChip.StockMarketIndexOptionsInstiInvestorsNetOi]: () => this.fetchTaifexCallsAndPutsContractNetAmount(cmd.date),
           [MarketChip.StockMarketIndexFuturesLargeTraderNetOi]: () => this.fetchTaifexFuturesLargeTraderNetAmount(cmd.date),
           [MarketChip.StockMarketIndexFuturesRetailInvestorsNetOi]: () => this.fetchTaifexRetailInvestorsLongShortRatio(cmd.date),
+          [MarketChip.StockMarketIndexOptionsPutCallRatio]: () => this.fetchTaifexTxoPcRatio(cmd.date),
+          [MarketChip.UsdTwdRate]: () => this.fetchUsdTwdRate(cmd.date),
         };
         return chips[type]();
       };
@@ -456,7 +458,7 @@ export class UpdateMarketChipsHandler implements ICommandHandler<UpdateMarketChi
   /**
    * 取得 P/C Ratio
    */
-  async fetchTaifexPcRatio(date: string) {
+  async fetchTaifexTxoPcRatio(date: string): Promise<Ticker> {
     const queryDate = date.replace(/-/g, '/');
     const url = 'https://www.taifex.com.tw/enl/eng3/pcRatioDown';
 

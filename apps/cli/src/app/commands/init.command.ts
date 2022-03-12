@@ -105,6 +105,18 @@ export class InitCommand implements CommandRunner {
         if (result) this.spinner.succeed(`${date} 小台散戶淨部位: 已更新`);
         else this.spinner.warn(`${date} 小台散戶淨部位: 尚無資料或非交易日`);
       });
+
+    await firstValueFrom(this.client.send({ cmd: 'update_market_chips' }, { date, type: MarketChip.StockMarketIndexOptionsPutCallRatio }))
+      .then(result => {
+        if (result) this.spinner.succeed(`${date} 台指選擇權 Put/Call Ratio: 已更新`);
+        else this.spinner.warn(`${date} 台指選擇權 Put/Call Ratio: 尚無資料或非交易日`);
+      });
+
+    await firstValueFrom(this.client.send({ cmd: 'update_market_chips' }, { date, type: MarketChip.UsdTwdRate }))
+      .then(result => {
+        if (result) this.spinner.succeed(`${date} 美元兌新台幣匯率: 已更新`);
+        else this.spinner.warn(`${date} 美元兌新台幣匯率: 尚無資料或非交易日`);
+      });
   }
 
   async updateEquityChips(date: string) {
