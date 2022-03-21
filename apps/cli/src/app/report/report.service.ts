@@ -4,7 +4,7 @@ import * as ExcelJS from 'exceljs';
 import { firstValueFrom } from 'rxjs';
 import { Injectable, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { TickerType, Ticker, Exchange, Index } from '@speculator/common';
+import { TickerType, Ticker, Exchange, Index, getSectorNameFromSymbol } from '@speculator/common';
 import { MostActives, Movers, NetBuySellList } from './enums';
 import { getMoneyFlowFromTickersByDate, getMostActivesFromTickers, getMoversFromTickers, getNetBuySellListFromTickers } from './utils';
 import { MarketInfoSheetColumn, MoneyFlowSheetColumn, MostActivesSheetColumn, MoversSheetColumn, NetBuySellSheetColumn, ForegroundColor } from './enums';
@@ -222,7 +222,8 @@ export class ReportService {
   }
 
   async processMoneyFlowSheet(worksheet: ExcelJS.Worksheet, data: Record<string, Ticker[]>) {
-    const exchange = data[Object.keys(data)[0]][0].exchange === Exchange.TPEx ? '上櫃' : '上市';
+    const exchange = data[Object.keys(data)[0]][0].exchange;
+    const exchangeName = exchange === Exchange.TPEx ? '上櫃' : '上市';
     const date = Object.keys(data)[0];
     const prevDate = Object.keys(data)[1];
 
@@ -239,7 +240,7 @@ export class ReportService {
       { width: 12.5 },
     ];
 
-    const titleRow = worksheet.addRow([`${exchange}資金流向 (${date})`]);
+    const titleRow = worksheet.addRow([`${exchangeName}資金流向 (${date})`]);
     titleRow.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'ffffff' } };
     titleRow.height = 20;
 
@@ -278,7 +279,7 @@ export class ReportService {
       const tradeValueChange = data[date][i].tradeValue - data[prevDate].find(ticker => ticker.symbol === data[date][i].symbol).tradeValue;
 
       const dataRow = worksheet.addRow([
-        data[date][i].name,
+        getSectorNameFromSymbol(data[date][i].symbol, exchange),
         data[date][i].closePrice,
         data[date][i].change,
         numeral(data[date][i].changePercent).divide(100).value(),

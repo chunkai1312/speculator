@@ -8,8 +8,8 @@ interface Options {
 export function getForegroundColorBySymbolStatus(symbolStatus: SymbolStatus, options: Options): ForegroundColor {
   const colors = {
     [NetBuySellSheetColumn.SymbolOfQfiiNetBuy]: () => {
-      if (symbolStatus.isFiniContinuousBuying) return ForegroundColor.Continuous;
-      if (symbolStatus.isFiniNewBuying) return ForegroundColor.Notice;
+      if (symbolStatus.isQfiiContinuousBuying) return ForegroundColor.Continuous;
+      if (symbolStatus.isQfiiNewBuying) return ForegroundColor.Notice;
       return ForegroundColor.Normal;
     },
     [NetBuySellSheetColumn.NameOfQfiiNetBuy]: () => {
@@ -18,8 +18,8 @@ export function getForegroundColorBySymbolStatus(symbolStatus: SymbolStatus, opt
       return ForegroundColor.Normal;
     },
     [NetBuySellSheetColumn.SymbolOfQfiiNetSell]: () => {
-      if (symbolStatus.isFiniContinuousSelling) return ForegroundColor.Continuous;
-      if (symbolStatus.isFiniNewSelling) return ForegroundColor.Notice;
+      if (symbolStatus.isQfiiContinuousSelling) return ForegroundColor.Continuous;
+      if (symbolStatus.isQfiiNewSelling) return ForegroundColor.Notice;
       return ForegroundColor.Normal;
     },
     [NetBuySellSheetColumn.NameOfQfiiNetSell]: () => {
@@ -28,8 +28,8 @@ export function getForegroundColorBySymbolStatus(symbolStatus: SymbolStatus, opt
       return ForegroundColor.Normal;
     },
     [NetBuySellSheetColumn.SymbolOfSiteNetBuy]: () => {
-      if (symbolStatus.isSitcContinuousBuying) return ForegroundColor.Continuous;
-      if (symbolStatus.isSitcNewBuying) return ForegroundColor.Notice;
+      if (symbolStatus.isSiteContinuousBuying) return ForegroundColor.Continuous;
+      if (symbolStatus.isSiteNewBuying) return ForegroundColor.Notice;
       return ForegroundColor.Normal;
     },
     [NetBuySellSheetColumn.NameOfSiteNetBuy]: () => {
@@ -38,8 +38,8 @@ export function getForegroundColorBySymbolStatus(symbolStatus: SymbolStatus, opt
       return ForegroundColor.Normal;
     },
     [NetBuySellSheetColumn.SymbolOfSiteNetSell]: () => {
-      if (symbolStatus.isSitcContinuousSelling) return ForegroundColor.Continuous;
-      if (symbolStatus.isSitcNewSelling) return ForegroundColor.Notice;
+      if (symbolStatus.isSiteContinuousSelling) return ForegroundColor.Continuous;
+      if (symbolStatus.isSiteNewSelling) return ForegroundColor.Notice;
       return ForegroundColor.Normal;
     },
     [NetBuySellSheetColumn.NameOfSiteNetSell]: () => {

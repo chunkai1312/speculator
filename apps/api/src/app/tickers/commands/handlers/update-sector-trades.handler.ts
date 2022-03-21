@@ -101,7 +101,7 @@ export class UpdateSectorTradesHandler implements ICommandHandler<UpdateSectorTr
         tradeValue: numeral(tradeValue).value(),
         tradeWeight: numeral(tradeValueWeight).value(),
       };
-    });
+    }).filter(data => data.symbol);
 
     const electronic = data.reduce((trading, data) => {
       return ['IX0053', 'IX0054', 'IX0055', 'IX0056', 'IX0057', 'IX0058', 'IX0059', 'IX0099']
