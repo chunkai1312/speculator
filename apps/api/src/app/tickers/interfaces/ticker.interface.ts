@@ -3,7 +3,7 @@ import { TickerType, Exchange, Market } from '@speculator/common';
 export interface Ticker {
   date: string;
   exchange: Exchange;
-  market: Market,
+  market?: Market,
   type: TickerType;
   symbol: string;
   name?: string;

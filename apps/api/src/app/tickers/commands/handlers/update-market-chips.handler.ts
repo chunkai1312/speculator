@@ -1,3 +1,4 @@
+import * as https from 'https';
 import * as numeral from 'numeral';
 import * as FormData from 'form-data';
 import * as csvtojson from 'csvtojson';
@@ -171,7 +172,7 @@ export class UpdateMarketChipsHandler implements ICommandHandler<UpdateMarketChi
     form.append('queryEndDate', queryDate);
     form.append('commodityId', 'TXF');
 
-    const responseData: TaifexFuturesContract[] = await firstValueFrom(this.httpService.post(url, form, { headers: form.getHeaders() }))
+    const responseData: TaifexFuturesContract[] = await firstValueFrom(this.httpService.post(url, form, { headers: form.getHeaders(), httpsAgent: new https.Agent({ rejectUnauthorized: false }) }))
       .then(response => csvtojson().fromString(response.data));
 
     if (!responseData[0]?.Date) return null;

@@ -20,11 +20,11 @@ export class TickerRepository {
   }
 
   updateTicker(updateTickerDto: UpdateTickerDto, options?: QueryOptions): Promise<any> {
-    const { date, type, exchange, market, symbol } = updateTickerDto;
+    const { date, symbol } = updateTickerDto;
 
     return this.tickerModel
       .updateOne(
-        { date, type, exchange, market, symbol },
+        { date, symbol },
         { ...updateTickerDto },
         { ...options, upsert: true },
       )

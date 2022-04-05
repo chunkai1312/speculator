@@ -7,3 +7,4 @@ export * from './twse-indices-trading-response.interface';
 export * from './twse-trading-details-response.interface';
 export * from './twse-market-summary-response.interface';
 export * from './twse-indices_per_5_seconds-response.interface';
+export * from './twse-foreign-investors-trading-and-shareholding-response.interface';

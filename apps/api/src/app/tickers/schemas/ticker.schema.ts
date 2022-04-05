@@ -64,6 +64,12 @@ export class Ticker {
   dealersNetBuySell: number;
 
   @Prop({ type: Number })
+  issuedShares: number;
+
+  @Prop({ type: Number })
+  qfiiHoldings: number;
+
+  @Prop({ type: Number })
   marginPurchase: number;
 
   @Prop({ type: Number })
