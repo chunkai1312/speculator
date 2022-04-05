@@ -27,6 +27,8 @@ export class UpdateCommand implements CommandRunner {
       await this.wait(5000);
       await this.updateEquityQuotes(options.date);
       await this.wait(5000);
+      await this.updateEquityShares(options.date);
+      await this.wait(5000);
       await this.updateIndexQuotes(options.date);
       await this.wait(5000);
       await this.updateMarketTrades(options.date);
@@ -129,6 +131,22 @@ export class UpdateCommand implements CommandRunner {
       .then(result => {
         if (result) this.spinner.succeed(`${date} 上櫃個股收盤行情: 已更新`);
         else this.spinner.warn(`${date} 上櫃個股收盤行情: 尚無資料或非交易日`);
+      });
+  }
+
+  async updateEquityShares(date: string) {
+    this.spinner.start(`正在取得上市櫃個股外資持股...`);
+
+    await firstValueFrom(this.client.send({ cmd: 'update_equity_shares' }, { date, exchange: Exchange.TWSE }))
+      .then(result => {
+        if (result) this.spinner.succeed(`${date} 上市個股外資持股: 已更新`);
+        else this.spinner.warn(`${date} 上市個股外資持股: 尚無資料或非交易日`);
+      });
+
+    await firstValueFrom(this.client.send({ cmd: 'update_equity_shares' }, { date, exchange: Exchange.TPEx }))
+      .then(result => {
+        if (result) this.spinner.succeed(`${date} 上櫃個股外資持股: 已更新`);
+        else this.spinner.warn(`${date} 上櫃個股外資持股: 尚無資料或非交易日`);
       });
   }
 
