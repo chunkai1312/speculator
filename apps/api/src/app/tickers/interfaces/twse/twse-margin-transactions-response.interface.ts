@@ -7,7 +7,7 @@ export interface TwseMarginTransactionsResponse {
   title: string;
   fields: string[];
   groups: string[];
-  data: string;
+  data: string[];
   date: string;
   notes: string[];
   selectType: string;

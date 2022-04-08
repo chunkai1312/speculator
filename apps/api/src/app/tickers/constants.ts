@@ -1,6 +1,7 @@
 export const UPDATE_MARKET_CHIPS = 'update_market_chips';
 export const UPDATE_EQUITY_CHIPS = 'update_equity_chips';
 export const UPDATE_EQUITY_QUOTES = 'update_equity_quotes';
+export const UPDATE_EQUITY_MARGINS = 'update_equity_margins';
 export const UPDATE_EQUITY_SHARES = 'update_equity_shares';
 export const UPDATE_INDEX_QUOTES = 'update_index_quotes';
 export const UPDATE_MARKET_TRADES = 'update_market_trades';

@@ -4,6 +4,7 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { UpdateMarketChipsCommand } from './commands/impl/update-market-chips.command';
 import { UpdateEquityChipsCommand } from './commands/impl/update-equity-chips.command';
 import { UpdateEquityQuotesCommand } from './commands/impl/update-equity-quotes.command';
+import { UpdateEquityMarginsCommand } from './commands/impl/update-equity-margins.command';
 import { UpdateEquitySharesCommand } from './commands/impl/update-equity-shares.command';
 import { UpdateIndexQuotesCommand } from './commands/impl/update-index-quotes.command';
 import { UpdateMarketTradesCommand } from './commands/impl/update-market-trades.command';
@@ -15,6 +16,7 @@ import { GetLastTradeDatesByDateQuery } from './queries/impl/get-last-trade-date
 import { UpdateMarketChipsDto } from './dto/update-market-chips.dto';
 import { UpdateEquityChipsDto } from './dto/update-equity-chips.dto';
 import { UpdateEquityQuotesDto } from './dto/update-equity-quotes.dto';
+import { UpdateEquityMarginsDto } from './dto/update-equity-margins.dto';
 import { UpdateEquitySharesDto } from './dto/update-equity-shares.dto';
 import { UpdateIndexQuotesDto } from './dto/update-index-quotes.dto';
 import { UpdateMarketTradesDto } from './dto/update-market-trades.dto';
@@ -53,6 +55,13 @@ export class TickersController {
   async updateEquityQuotes(updateEquityQuotesDto: UpdateEquityQuotesDto) {
     return this.commandBus
       .execute(new UpdateEquityQuotesCommand(updateEquityQuotesDto))
+      .catch(err => this.logger.error(err.message, err.stack));
+  }
+
+  @MessagePattern({ cmd: constants.UPDATE_EQUITY_MARGINS })
+  async updateEquityMargins(updateEquityMarginsDto: UpdateEquityMarginsDto) {
+    return this.commandBus
+      .execute(new UpdateEquityMarginsCommand(updateEquityMarginsDto))
       .catch(err => this.logger.error(err.message, err.stack));
   }
 
