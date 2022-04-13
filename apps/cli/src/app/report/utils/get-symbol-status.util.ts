@@ -6,14 +6,14 @@ import { SymbolStatus } from '../interfaces';
 export function getSymbolStatus(symbol: string, data: Record<string, Ticker[]>): SymbolStatus {
   const [ lastDate, prevDate, ...dates ] = Object.keys(data);
 
-  const lastDateQfiiNetBuy = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.QfiiNetBuy, top: 50 });
-  const lastDateQfiiNetSell = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.QfiiNetSell, top: 50 });
-  const lastDateSiteNetBuy = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.SiteNetBuy, top: 50 });
-  const lastDateSiteNetSell = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.SiteNetSell, top: 50 });
-  const prevDateQfiiNetBuy = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.QfiiNetBuy, top: 50 });
-  const prevDateQfiiNetSell = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.QfiiNetSell, top: 50 });
-  const prevDateSiteNetBuy = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.SiteNetBuy, top: 50 });
-  const prevDateSiteNetSell = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.SiteNetSell, top: 50 });
+  const lastDateQfiiNetBuy = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.QfiiNetBuy, top: 100 });
+  const lastDateQfiiNetSell = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.QfiiNetSell, top: 100 });
+  const lastDateSiteNetBuy = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.SiteNetBuy, top: 100 });
+  const lastDateSiteNetSell = getNetBuySellListFromTickers(data[lastDate], { type: NetBuySellList.SiteNetSell, top: 100 });
+  const prevDateQfiiNetBuy = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.QfiiNetBuy, top: 100 });
+  const prevDateQfiiNetSell = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.QfiiNetSell, top: 100 });
+  const prevDateSiteNetBuy = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.SiteNetBuy, top: 100 });
+  const prevDateSiteNetSell = getNetBuySellListFromTickers(data[prevDate], { type: NetBuySellList.SiteNetSell, top: 100 });
 
   const isQfiiContinuousBuying = !!(lastDateQfiiNetBuy.find(ticker => ticker.symbol === symbol) && prevDateQfiiNetBuy.find(data => data.symbol === symbol));
   const isQfiiContinuousSelling = !!(lastDateQfiiNetSell.find(data => data.symbol === symbol) && prevDateQfiiNetSell.find(data => data.symbol === symbol));
@@ -25,10 +25,10 @@ export function getSymbolStatus(symbol: string, data: Record<string, Ticker[]>):
 
   const isNewEntry = [].concat(prevDate, dates).every(date => {
     const tickers = data[date];
-    const QfiiNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetBuy, top: 50 });
-    const QfiiNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetSell, top: 50 });
-    const SiteNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetBuy, top: 50 });
-    const SiteNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetSell, top: 50 });
+    const QfiiNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetBuy, top: 100 });
+    const QfiiNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetSell, top: 100 });
+    const SiteNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetBuy, top: 100 });
+    const SiteNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetSell, top: 100 });
     return !([].concat(
       QfiiNetBuy.map(data => data.symbol),
       QfiiNetSell.map(data => data.symbol),
@@ -39,25 +39,25 @@ export function getSymbolStatus(symbol: string, data: Record<string, Ticker[]>):
 
   const isQfiiNewBuying = symbol && [].concat(prevDate, dates).every(date => {
     const tickers = data[date];
-    const QfiiNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetBuy, top: 50 });
+    const QfiiNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetBuy, top: 100 });
     return !(QfiiNetBuy.map(data => data.symbol)).includes(symbol);
   });
 
   const isQfiiNewSelling = symbol &&[].concat(prevDate, dates).every(date => {
     const tickers = data[date];
-    const QfiiNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetSell, top: 50 });
+    const QfiiNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.QfiiNetSell, top: 100 });
     return !(QfiiNetSell.map(data => data.symbol)).includes(symbol);
   });
 
   const isSiteNewBuying = symbol &&[].concat(prevDate, dates).every(date => {
     const tickers = data[date];
-    const SiteNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetBuy, top: 50 });
+    const SiteNetBuy = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetBuy, top: 100 });
     return !(SiteNetBuy.map(data => data.symbol)).includes(symbol);
   });
 
   const isSiteNewSelling = symbol &&[].concat(prevDate, dates).every(date => {
     const tickers = data[date];
-    const SiteNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetSell, top: 50 });
+    const SiteNetSell = getNetBuySellListFromTickers(tickers, { type: NetBuySellList.SiteNetSell, top: 100 });
     return !(SiteNetSell.map(data => data.symbol)).includes(symbol);
   });
 

@@ -7,7 +7,7 @@ interface Options {
 }
 
 export function getNetBuySellListFromTickers(tickers: Ticker[], options: Options) {
-  const top = options?.top || 50;
+  const top = options?.top || 100;
 
   const lists = {
     [NetBuySellList.QfiiNetBuy]: () => {
